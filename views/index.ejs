@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Message Board</title>
+</head>
+
+<body>
+    <div id="main">
+        <div id="head">
+            <h1>The Dojo Message Board:</h1>
+        </div>
+        <div id="top">
+            <form method="POST" action="/process_message">
+                <h1>Name:</h1>
+                <h1><input type="text" name="name"></h1>
+                <h1>Message:</h1>
+                <h1><textarea name="message"></textarea></h1>
+                <h1><input type="submit" value="Add Message!"></h1>
+            </form>
+        </div>
+        <div id="mes_com">
+            <% for (i in messages) {%>
+                <div class="messages">
+                    <h3>Name:
+                        <%= messages[i].name %>
+                    </h3>
+                    <h3>Message:
+                        <%= messages[i].text %>
+                    </h3>
+                    <form method="POST" action="/process_comment/<%= messages[i]._id%>">
+                        <p>Name:</p>
+                        <p><input type="text" name="name"></p>
+                        <p>Comment:</p>
+                        <p><textarea name="comment"></textarea></p>
+                        <p><input type="submit" value="Add Comment"></p>
+                    </form>
+                </div>
+                <% } %>
+
+
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+<style>
+    #main {
+        width: 900px;
+        height: 1300px;
+        margin: 30px auto;
+        background-color: lightblue;
+        text-align: center;
+    }
+    
+    #head {
+        display: inline-block;
+        height: 10%;
+        width: 100%;
+        background: white;
+        border-bottom: 1px solid black;
+        text-align: left;
+    }
+    
+    #top {
+        margin-left: 100px;
+        text-align: left;
+    }
+    
+    textarea {
+        width: 300px;
+        height: 50px;
+        display: inline-block;
+    }
+    
+    #mes_com {
+        width: 90%;
+        height: 60%;
+        background-color: white;
+        display: inline-block;
+        text-align: center;
+        overflow-y: scroll;
+    }
+    
+    .messages {
+        width: 80%;
+        height: 50%;
+        border: 1px solid black;
+        display: inline-block;
+        text-align: left;
+        overflow-y: scroll;
+    }
+    
+    form {
+        margin-left: 30px;
+    }
+</style>
